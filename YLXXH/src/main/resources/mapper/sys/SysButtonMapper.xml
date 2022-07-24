@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhixiang.health.modules.sys.mapper.SysButtonMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zhixiang.health.modules.sys.model.entity.SysButton">
+        <id column="id" property="id" />
+
+        <result column="name" property="name" />
+        <result column="permission" property="permission" />
+        <result column="url" property="url" />
+        <result column="method" property="method" />
+
+        <result column="create_date" property="createDate" />
+        <result column="create_by" property="createBy" />
+        <result column="update_date" property="updateDate" />
+        <result column="update_by" property="updateBy" />
+        <result column="remark" property="remark" />
+        <result column="delete_state" property="deleteState" />
+    </resultMap>
+
+    <resultMap id="DtoResultMap" type="com.zhixiang.health.modules.sys.model.dto.SysButtonDto" extends="BaseResultMap">
+        <result column="parent_id" property="parentId" />
+    </resultMap>
+
+    <select id="listByParentId" resultMap="DtoResultMap">
+        SELECT sb.*, sr.parent_id
+        FROM sys_button sb
+        LEFT JOIN sys_resource sr on sb.id = sr.resource_id AND sr.type = 3
+        WHERE sb.delete_state = 0 AND sr.parent_id = #{parentId}
+    </select>
+
+    <select id="listByUserName" resultMap="BaseResultMap">
+        SELECT DISTINCT sb.*
+        FROM sys_user su
+        LEFT JOIN sys_user_role sur on su.id = sur.user_id
+        LEFT JOIN sys_role_resource srr on srr.role_id = sur.role_id
+        LEFT JOIN sys_resource sr on sr.id = srr.resource_id
+        LEFT JOIN sys_button sb on sb.id = sr.resource_id
+        WHERE su.delete_state = 0 and sr.type = 3 AND su.user_name = #{userName}
+    </select>
+
+    <select id="listPermissionByUserId" resultType="java.lang.String">
+        select sb.permission
+        from sys_button sb
+        LEFT JOIN sys_resource sr on sb.id = sr.resource_id and sr.type = 3
+        LEFT JOIN sys_role_resource srr on srr.resource_id = sr.id
+        LEFT JOIN sys_user_role sur on sur.role_id = srr.role_id
+        where sb.delete_state = 0
+        and sb.permission != ''
+        and sur.user_id = #{userId}
+    </select>
+
+</mapper>

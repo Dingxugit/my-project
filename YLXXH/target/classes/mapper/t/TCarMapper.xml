@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhixiang.health.modules.t.mapper.TCarMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zhixiang.health.modules.t.model.entity.TCar">
+        <id column="id" property="id" />
+
+        <result column="numberplate" property="numberplate" />
+        <result column="brandmodel" property="brandmodel" />
+        <result column="framenumber" property="framenumber" />
+        <result column="enginenumber" property="enginenumber" />
+        <result column="carryovermileage" property="carryovermileage" />
+        <result column="oilcardno" property="oilcardno" />
+        <result column="unit_id" property="unitId" />
+        <result column="create_date" property="createDate" />
+        <result column="update_date" property="updateDate" />
+        <result column="create_by" property="createBy" />
+        <result column="update_by" property="updateBy" />
+        <result column="delete_state" property="deleteState" />
+    </resultMap>
+
+    <select id="pageList" resultType="com.zhixiang.health.modules.t.model.dto.TCarDto">
+        SELECT t.*
+        FROM t_car t
+        WHERE t.delete_state = 0
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) >0 </if>
+        <if test="brandmodel != '' and brandmodel != null"> AND instr(t.brandmodel,#{brandmodel}) >0 </if>
+        <if test="framenumber != '' and framenumber != null"> AND instr(t.framenumber,#{framenumber}) >0  </if>
+        <if test="enginenumber !=  null and enginenumber != '' "> AND instr(t.enginenumber,#{enginenumber}) >0  </if>
+        <if test="oilcardno !=  null and oilcardno != '' "> AND instr(t.oilcardno,#{oilcardno}) >0 </if>
+        order by t.create_date desc
+        limit #{limitStart}, #{pageSize}
+    </select>
+    <select id="pageTotal" resultType="java.lang.Long">
+        SELECT count(1)
+        FROM t_car t
+        WHERE t.delete_state = 0
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) >0 </if>
+        <if test="brandmodel != '' and brandmodel != null"> AND instr(t.brandmodel,#{brandmodel}) >0 </if>
+        <if test="framenumber != '' and framenumber != null"> AND instr(t.framenumber,#{framenumber}) >0  </if>
+        <if test="enginenumber !=  null and enginenumber != '' "> AND instr(t.enginenumber,#{enginenumber}) >0  </if>
+        <if test="oilcardno !=  null and oilcardno != '' "> AND instr(t.oilcardno,#{oilcardno}) >0 </if>
+
+    </select>
+    <select id="getCarInfo" resultType="com.zhixiang.health.modules.t.model.dto.TCarDto">
+        select id,numberplate from t_car where delete_state= 0
+        <if test="firstDeptId != '' and firstDeptId != null " >and unit_id = #{firstDeptId}</if>
+    </select>
+    <select id="getCarInfoByNum" resultType="com.zhixiang.health.modules.t.model.dto.TCarDto">
+        select * from t_car where delete_state= 0
+        <if test="numberplate != '' and numberplate != null " >and numberplate = #{numberplate}</if>
+    </select>
+    <select id="getCarInfoByCjh" resultType="com.zhixiang.health.modules.t.model.entity.TCar">
+        select * from t_car where delete_state= 0
+        <if test="framenumber != '' and framenumber != null " >and framenumber = #{framenumber}</if>
+        limit 1
+    </select>
+    <select id="getCarList" resultType="com.zhixiang.health.modules.t.model.dto.TCarDto">
+        select * from t_car where delete_state= 0 and (isdc = 'N' or isdc = '')
+        <if test="firstDeptId != '' and firstDeptId != null " >and unit_id = #{firstDeptId}</if>
+    </select>
+    <select id="getCarInfoByDeptname" resultType="com.zhixiang.health.modules.t.model.dto.TCarDto">
+        select * from t_car where delete_state= 0
+        <if test="deptname != '' and deptname != null"> and unit_name =#{deptname}</if>
+    </select>
+
+    <update id="updateCar">
+        update t_car set isdc = 'Y'
+        where id in (
+        select id from (
+        SELECT t.*
+        FROM t_car t
+        WHERE t.delete_state = 0
+        <if test="firstDeptId != '' and firstDeptId != null " >and unit_id = #{firstDeptId}</if>
+        ) a
+        )
+    </update>
+
+</mapper>

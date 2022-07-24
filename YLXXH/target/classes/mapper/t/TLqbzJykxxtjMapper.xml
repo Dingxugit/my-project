@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhixiang.health.modules.t.mapper.TLqbzJykxxtjMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zhixiang.health.modules.t.model.entity.TLqbzJykxxtj">
+        <id column="id" property="id" />
+
+        <result column="fuelcardnumber" property="fuelcardnumber" />
+        <result column="numberplate" property="numberplate" />
+        <result column="brandmodel" property="brandmodel" />
+        <result column="framenumber" property="framenumber" />
+        <result column="enginenumber" property="enginenumber" />
+        <result column="shengyuzhibiao" property="shengyuzhibiao" />
+        <result column="bianzhidanwei" property="bianzhidanwei" />
+        <result column="tianbaoshijian" property="tianbaoshijian" />
+        <result column="querequanzu" property="querequanzu" />
+
+        <result column="create_date" property="createDate" />
+        <result column="update_date" property="updateDate" />
+        <result column="create_by" property="createBy" />
+        <result column="update_by" property="updateBy" />
+        <result column="delete_state" property="deleteState" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <select id="pageList" resultType="com.zhixiang.health.modules.t.model.dto.TLqbzJykxxtjDto">
+        SELECT t.*
+        FROM t_lqbz_jykxxtj t
+        WHERE t.delete_state = 0
+        <if test="fuelcardnumber != '' and fuelcardnumber != null"> AND instr(t.fuelcardnumber,#{fuelcardnumber}) > 0  </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+
+        order by t.create_date desc
+        limit #{limitStart}, #{pageSize}
+    </select>
+    <select id="getTotal" resultType="java.lang.Long">
+        SELECT count(1)
+        FROM t_lqbz_jykxxtj t
+        WHERE t.delete_state = 0
+        <if test="fuelcardnumber != '' and fuelcardnumber != null"> AND instr(t.fuelcardnumber,#{fuelcardnumber}) > 0  </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+
+    </select>
+    <select id="getJykxxtjList" resultType="com.zhixiang.health.modules.t.model.dto.TLqbzJykxxtjDto">
+        SELECT t.*
+        FROM t_lqbz_jykxxtj t
+        WHERE t.delete_state = 0 and (isdc ='N' or isdc ='')
+        <if test="fuelcardnumber != '' and fuelcardnumber != null"> AND instr(t.fuelcardnumber,#{fuelcardnumber}) > 0  </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if> ;
+
+    </select>
+    <select id="getJykxxtjDcLists" resultType="com.zhixiang.health.modules.t.model.entity.TLqbzJykxxtj">
+        select * from t_lqbz_jykxxtj t WHERE t.delete_state = 0 and (isdctp ='N' or isdctp ='')
+    </select>
+    <select id="getExportDataList" resultType="com.zhixiang.health.modules.t.model.entity.TLqbzJykxxtj">
+        select * from t_lqbz_jykxxtj t WHERE t.delete_state = 0
+        <if test="bianzhidanwei != '' and bianzhidanwei != null"> AND instr(t.bianzhidanwei,#{bianzhidanwei}) > 0 </if>
+        <if test="tianbaoshijian != '' and tianbaoshijian != null"> AND DATE_FORMAT(t.tianbaoshijian,'%Y-%m-%d') =#{tianbaoshijian} </if>
+    </select>
+    <update id="updateJykxx">
+        update t_lqbz_jykxxtj set isdc = 'Y' where id in (
+        select id from (
+        (SELECT id
+        FROM t_lqbz_jykxxtj t
+        WHERE t.delete_state = 0 and (isdc ='N' or isdc ='')
+        <if test="fuelcardnumber != '' and fuelcardnumber != null">AND instr(t.fuelcardnumber,#{fuelcardnumber}) > 0</if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        ) a) )
+    </update>
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhixiang.health.modules.sys.mapper.SysRoleResourceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zhixiang.health.modules.sys.model.entity.SysRoleResource">
+        <result column="role_id" property="roleId" />
+        <result column="resource_id" property="resourceId" />
+
+        <result column="create_date" property="createDate" />
+        <result column="create_by" property="createBy" />
+        <result column="update_date" property="updateDate" />
+        <result column="update_by" property="updateBy" />
+        <result column="remark" property="remark" />
+        <result column="delete_state" property="deleteState" />
+    </resultMap>
+
+    <delete id="deleteByResourceId">
+        delete from sys_role_resource where resource_id = #{resourceId}
+    </delete>
+
+    <delete id="deleteByRoleId">
+        delete from sys_role_resource where role_id = #{roleId}
+    </delete>
+
+    <select id="findRidByRole" resultType="java.lang.Integer">
+        select resource_id
+        from sys_role_resource
+        where role_id = #{roleId}
+    </select>
+
+</mapper>

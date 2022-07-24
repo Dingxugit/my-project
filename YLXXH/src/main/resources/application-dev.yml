@@ -1,0 +1,57 @@
+ylxxh:
+  post: 8380
+  redis:
+    host: localhost
+    port: 6379
+    database: 1
+  datasource:
+    username: root
+    password: 520happy
+    url: jdbc:mysql://localhost:3306/ylxxh?serverTimezone=GMT%2B8&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&nullCatalogMeansCurrent=true
+  common:
+    static-file-path: D://
+    static-url: /file
+  sys:
+    user:
+      photo: ${ylxxh.common.static-url}/sys/user/photo/
+  lqbz:
+    file:
+      ylgyzbz: ${ylxxh.common.static-url}/lqbz/ylgyzbz/
+      jykgl: ${ylxxh.common.static-url}/lqbz/jykgl/
+      jygl: ${ylxxh.common.static-url}/lqbz/jygl/
+      dcyh: ${ylxxh.common.static-url}/lqbz/dcyh/
+  ylshh:
+    file:
+      yljfzbz: ${ylxxh.common.static-url}/ylshh/yljfzbz/
+      jykgl: ${ylxxh.common.static-url}/ylshh/jykgl/
+      jygl: ${ylxxh.common.static-url}/ylshh/jygl/
+      dcyh: ${ylxxh.common.static-url}/ylshh/dcyh/
+  swy:
+    file:
+      swylz: ${ylxxh.common.static-url}/swy/swylz/
+      djb: ${ylxxh.common.static-url}/swy/djb/
+      dcyh: ${ylxxh.common.static-url}/swy/dcyh/
+  carInfo:
+    file:
+      cars: ${ylxxh.common.static-url}/cars/
+  car:
+    photo:
+      lqbz: ${ylxxh.common.static-url}/lqbz/
+      ylshh: ${ylxxh.common.static-url}/ylshh/
+  export:
+    lqbz:
+      zbgl: ${ylxxh.common.static-url}/export/lqbz/zbgl/
+      jyk: ${ylxxh.common.static-url}/export/lqbz/jyk/
+      rcgl: ${ylxxh.common.static-url}/export/lqbz/rcgl/
+      czpz: ${ylxxh.common.static-url}/export/lqbz/czpz/
+      dcyh: ${ylxxh.common.static-url}/export/lqbz/dcyh/
+    ylshh:
+      zbgl: ${ylxxh.common.static-url}/export/ylshh/zbgl/
+      jyk: ${ylxxh.common.static-url}/export/ylshh/jyk/
+      rcgl: ${ylxxh.common.static-url}/export/ylshh/rcgl/
+      czpz: ${ylxxh.common.static-url}/export/ylshh/czpz/
+      dcyh: ${ylxxh.common.static-url}/export/ylshh/dcyh/
+    swy:
+      swygl: ${ylxxh.common.static-url}/export/swy/swygl/
+      djb: ${ylxxh.common.static-url}/export/swy/djb/
+      dcyh: ${ylxxh.common.static-url}/export/swy/dcyh/

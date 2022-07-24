@@ -1,0 +1,63 @@
+// @ts-nocheck
+import { ApplyPluginsType, dynamic } from 'G:/WorkSpace/ZhiXiang/ZXHealth/ZXHealthS/ZXHealthS-UI/node_modules/_@umijs_runtime@3.2.9@@umijs/runtime';
+import { plugin } from './plugin';
+
+const routes = [
+  {
+    "path": "/",
+    "component": dynamic({ loader: () => import(/* webpackChunkName: 'layouts__BlankLayout' */'G:/WorkSpace/ZhiXiang/ZXHealth/ZXHealthS/ZXHealthS-UI/src/layouts/BlankLayout'), loading: require('@/components/layout/PageLoading/index').default}),
+    "routes": [
+      {
+        "path": "/user",
+        "component": dynamic({ loader: () => import(/* webpackChunkName: 'layouts__UserLayout' */'G:/WorkSpace/ZhiXiang/ZXHealth/ZXHealthS/ZXHealthS-UI/src/layouts/UserLayout'), loading: require('@/components/layout/PageLoading/index').default}),
+        "routes": [
+          {
+            "path": "/user",
+            "redirect": "/user/login",
+            "exact": true
+          },
+          {
+            "name": "login",
+            "icon": "smile",
+            "path": "/user/login",
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__user__login' */'G:/WorkSpace/ZhiXiang/ZXHealth/ZXHealthS/ZXHealthS-UI/src/pages/user/login'), loading: require('@/components/layout/PageLoading/index').default}),
+            "exact": true
+          },
+          {
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__error__404' */'G:/WorkSpace/ZhiXiang/ZXHealth/ZXHealthS/ZXHealthS-UI/src/pages/error/404'), loading: require('@/components/layout/PageLoading/index').default}),
+            "exact": true
+          }
+        ]
+      },
+      {
+        "path": "/guide",
+        "component": dynamic({ loader: () => import(/* webpackChunkName: 'layouts__GuideLayout' */'G:/WorkSpace/ZhiXiang/ZXHealth/ZXHealthS/ZXHealthS-UI/src/layouts/GuideLayout'), loading: require('@/components/layout/PageLoading/index').default}),
+        "exact": true
+      },
+      {
+        "path": "/",
+        "component": dynamic({ loader: () => import(/* webpackChunkName: 'layouts__BasicLayout' */'G:/WorkSpace/ZhiXiang/ZXHealth/ZXHealthS/ZXHealthS-UI/src/layouts/BasicLayout'), loading: require('@/components/layout/PageLoading/index').default}),
+        "routes": [
+          {
+            "path": "/",
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'layouts__RedirectLayout' */'G:/WorkSpace/ZhiXiang/ZXHealth/ZXHealthS/ZXHealthS-UI/src/layouts/RedirectLayout'), loading: require('@/components/layout/PageLoading/index').default}),
+            "exact": true
+          },
+          {
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__error__404' */'G:/WorkSpace/ZhiXiang/ZXHealth/ZXHealthS/ZXHealthS-UI/src/pages/error/404'), loading: require('@/components/layout/PageLoading/index').default}),
+            "exact": true
+          }
+        ]
+      }
+    ]
+  }
+];
+
+// allow user to extend routes
+plugin.applyPlugins({
+  key: 'patchRoutes',
+  type: ApplyPluginsType.event,
+  args: { routes },
+});
+
+export { routes };

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhixiang.health.modules.t.mapper.TLqbzJygcjykrcgldjMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zhixiang.health.modules.t.model.entity.TLqbzJygcjykrcgldj">
+        <id column="id" property="id" />
+
+        <result column="fuelcardnumber" property="fuelcardnumber" />
+        <result column="numberplate" property="numberplate" />
+        <result column="youpin" property="youpin" />
+        <result column="lingkashiyou" property="lingkashiyou" />
+        <result column="lingqusj" property="lingqusj" />
+        <result column="kaneiyouliang" property="kaneiyouliang" />
+        <result column="guihuanshijian" property="guihuanshijian" />
+        <result column="kaneiyue" property="kaneiyue" />
+        <result column="jaishiyuanqianzi" property="jaishiyuanqianzi" />
+
+        <result column="create_date" property="createDate" />
+        <result column="update_date" property="updateDate" />
+        <result column="create_by" property="createBy" />
+        <result column="update_by" property="updateBy" />
+        <result column="delete_state" property="deleteState" />
+    </resultMap>
+    <select id="pageList" resultType="com.zhixiang.health.modules.t.model.dto.TLqbzJygcjykrcgldjDto">
+        SELECT t.*
+        FROM t_lqbz_jygcjykrcgldj t
+        WHERE t.delete_state = 0
+        <if test="fuelcardnumber != '' and fuelcardnumber != null"> AND instr(t.fuelcardnumber,#{fuelcardnumber}) > 0  </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        <if test="youpin != '' and youpin != null"> AND instr(t.youpin,#{youpin}) > 0 </if>
+        <if test="lingqusj != '' and lingqusj != null"> AND instr(t.lingqusj,#{lingqusj}) > 0 </if>
+        <if test="guihuanshijian != '' and guihuanshijian != null"> AND instr(t.guihuanshijian,#{guihuanshijian}) > 0 </if>
+        order by t.create_date desc
+        limit #{limitStart}, #{pageSize}
+
+    </select>
+    <select id="getTotal" resultType="java.lang.Long">
+        SELECT count(1)
+        FROM t_lqbz_jygcjykrcgldj t
+        WHERE t.delete_state = 0
+        <if test="fuelcardnumber != '' and fuelcardnumber != null"> AND instr(t.fuelcardnumber,#{fuelcardnumber}) > 0  </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        <if test="youpin != '' and youpin != null"> AND instr(t.youpin,#{youpin}) > 0 </if>
+        <if test="lingqusj != '' and lingqusj != null"> AND instr(t.lingqusj,#{lingqusj}) > 0 </if>
+        <if test="guihuanshijian != '' and guihuanshijian != null"> AND instr(t.guihuanshijian,#{guihuanshijian}) > 0 </if>
+    </select>
+    <select id="getExportDataList" resultType="com.zhixiang.health.modules.t.model.entity.TLqbzJygcjykrcgldj">
+        select * from t_lqbz_jygcjykrcgldj  WHERE delete_state = 0
+        <if test="numberplate != '' and numberplate != null"> AND instr(numberplate,#{numberplate}) > 0 </if>
+    </select>
+
+</mapper>

@@ -1,0 +1,4 @@
+// @ts-nocheck
+
+export { connect } from 'G:/WorkSpace/ZhiXiang/ZXHealth/ZXHealthS/ZXHealthS-UI/node_modules/dva';
+export { getApp as getDvaApp } from './dva';

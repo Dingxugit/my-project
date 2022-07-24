@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6ad4053a-96b9-4758-8f0f-04690c52d81e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/config/defaultSettings.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/defaultSettings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/proxy.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/proxy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/favicon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/layout/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/layout/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.umi/core/history.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/.umi/core/history.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.umi/core/plugin.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/.umi/core/plugin.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.umi/core/pluginConfig.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/.umi/core/pluginConfig.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.umi/core/polyfill.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/.umi/core/polyfill.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.umi/core/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/.umi/core/routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.umi/core/umiExports.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/.umi/core/umiExports.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.umi/plugin-dva/connect.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/.umi/plugin-dva/connect.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.umi/plugin-dva/dva.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/.umi/plugin-dva/dva.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.umi/plugin-dva/exports.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/.umi/plugin-dva/exports.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.umi/plugin-dva/runtime.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/.umi/plugin-dva/runtime.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.umi/plugin-helmet/exports.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/.umi/plugin-helmet/exports.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.umi/plugin-initial-state/Provider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/.umi/plugin-initial-state/Provider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.umi/plugin-locale/SelectLang.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/.umi/plugin-locale/SelectLang.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.umi/plugin-locale/locale.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/.umi/plugin-locale/locale.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.umi/plugin-locale/localeExports.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/.umi/plugin-locale/localeExports.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.umi/plugin-model/Provider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/.umi/plugin-model/Provider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.umi/plugin-model/useModel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/.umi/plugin-model/useModel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.umi/plugin-request/request.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/.umi/plugin-request/request.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.umi/umi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/.umi/umi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layout/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/layout/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/GlobalFooter/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/GlobalFooter/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/GlobalHeader/components/updateInfo/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/GlobalHeader/components/updateInfo/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/BasicLayout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/BasicLayout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/GuideLayout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/GuideLayout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/UserLayout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/UserLayout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/document.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/document.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/user/components/form/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/user/components/form/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/user/login/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/user/login/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/user/login/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/user/login/model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/log/count/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/log/count/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/log/handle/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/log/handle/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/log/login/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/log/login/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/sys/button/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/sys/button/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/sys/count/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/sys/count/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/sys/dept/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/sys/dept/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/sys/dict/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/sys/dict/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/sys/menu/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/sys/menu/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/sys/resource/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/sys/resource/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/sys/role/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/sys/role/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/sys/role/resource/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/sys/role/resource/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/sys/system/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/sys/system/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/sys/task/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/sys/task/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/sys/user/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/sys/user/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/token.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/token.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="1v3zXnJW7OmPorVzdQVbL8TOouJ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/pages/swybz/ejdw/dcyhgl/dcyh/components" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.detected.package.stylelint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.path.for.package.stylelint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="node.js.selected.package.stylelint" value="$PROJECT_DIR$/node_modules/stylelint" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="D:\workS\ZXHealthS-UI\node_modules\prettier" />
+    <property name="ts.external.directory.path" value="D:\workS\ZXHealthS-UI\node_modules\typescript\lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workS\YLXXH-UI\src\pages\swybz\ejdw\dcyhgl\dcyh\components" />
+      <recent name="D:\workS\YLXXH-UI\src\pages\swybz\sjdw\dcyhgl\dcyh\components" />
+      <recent name="D:\workS\YLXXH-UI\src\pages\ylshhbz\ejdw\dcyhgl\dcyh\components" />
+      <recent name="D:\workS\YLXXH-UI\src\pages\ylshhbz\sjdw\dcyhgl\dcyh\components" />
+      <recent name="D:\workS\YLXXH-UI\src\pages\lqbz\ejdw\dcyhgl\dcyh\components" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\Administrator\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="D:\workS\YLXXH-UI" />
+          <option name="myCopyRoot" value="D:\workS\YLXXH-UI" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="D:\workS\YLXXH-UI" />
+          <option name="myCopyRoot" value="D:\workS\YLXXH-UI" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6ad4053a-96b9-4758-8f0f-04690c52d81e" name="Default Changelist" comment="" />
+      <created>1625805602793</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1625805602793</updated>
+      <workItem from="1625805604215" duration="3200000" />
+      <workItem from="1625808957618" duration="2174000" />
+      <workItem from="1626059659222" duration="5671000" />
+      <workItem from="1626242318445" duration="760000" />
+      <workItem from="1626250718209" duration="610000" />
+      <workItem from="1626319355105" duration="3394000" />
+      <workItem from="1626412753829" duration="1416000" />
+      <workItem from="1626568188365" duration="10633000" />
+      <workItem from="1627905783002" duration="614000" />
+      <workItem from="1627996909247" duration="683000" />
+      <workItem from="1628168705308" duration="1849000" />
+      <workItem from="1628510792733" duration="1929000" />
+      <workItem from="1628687587082" duration="1538000" />
+      <workItem from="1628859696836" duration="1415000" />
+      <workItem from="1629119363408" duration="1861000" />
+      <workItem from="1629377710704" duration="3019000" />
+      <workItem from="1629598131582" duration="15150000" />
+      <workItem from="1629724737817" duration="3936000" />
+      <workItem from="1629896393282" duration="4473000" />
+      <workItem from="1630105590472" duration="14024000" />
+      <workItem from="1630198503561" duration="4016000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="551" y="178" key="#ESLint" timestamp="1630123347241">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="551" y="178" key="#ESLint/0.0.1920.1040@0.0.1920.1040" timestamp="1630123347241" />
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1625805763993">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1625805763993" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1630111373304">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1630111373304" />
+    <state width="1882" height="230" key="GridCell.Tab.0.bottom" timestamp="1630199384439">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="145" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1626329730244" />
+    <state width="1882" height="230" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1630199384439" />
+    <state width="1882" height="230" key="GridCell.Tab.0.center" timestamp="1630199384439">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="145" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1626329730244" />
+    <state width="1882" height="230" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1630199384439" />
+    <state width="1882" height="230" key="GridCell.Tab.0.left" timestamp="1630199384439">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="145" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1626329730244" />
+    <state width="1882" height="230" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1630199384439" />
+    <state width="1882" height="230" key="GridCell.Tab.0.right" timestamp="1630199384439">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="145" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1626329730244" />
+    <state width="1882" height="230" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1630199384439" />
+    <state width="1882" height="344" key="GridCell.Tab.1.bottom" timestamp="1629901512181">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1882" height="344" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1629901512181" />
+    <state width="1882" height="344" key="GridCell.Tab.1.center" timestamp="1629901512181">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1882" height="344" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1629901512181" />
+    <state width="1882" height="344" key="GridCell.Tab.1.left" timestamp="1629901512181">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1882" height="344" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1629901512181" />
+    <state width="1882" height="344" key="GridCell.Tab.1.right" timestamp="1629901512181">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1882" height="344" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1629901512181" />
+    <state width="1882" height="344" key="GridCell.Tab.2.bottom" timestamp="1629901512181">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1882" height="344" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1629901512181" />
+    <state width="1882" height="344" key="GridCell.Tab.2.center" timestamp="1629901512181">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1882" height="344" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1629901512181" />
+    <state width="1882" height="344" key="GridCell.Tab.2.left" timestamp="1629901512181">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1882" height="344" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1629901512181" />
+    <state width="1882" height="344" key="GridCell.Tab.2.right" timestamp="1629901512181">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1882" height="344" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1629901512181" />
+    <state width="1882" height="344" key="GridCell.Tab.3.bottom" timestamp="1629901512182">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1882" height="344" key="GridCell.Tab.3.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1629901512182" />
+    <state width="1882" height="344" key="GridCell.Tab.3.center" timestamp="1629901512181">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1882" height="344" key="GridCell.Tab.3.center/0.0.1920.1040@0.0.1920.1040" timestamp="1629901512181" />
+    <state width="1882" height="344" key="GridCell.Tab.3.left" timestamp="1629901512181">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1882" height="344" key="GridCell.Tab.3.left/0.0.1920.1040@0.0.1920.1040" timestamp="1629901512181" />
+    <state width="1882" height="344" key="GridCell.Tab.3.right" timestamp="1629901512181">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1882" height="344" key="GridCell.Tab.3.right/0.0.1920.1040@0.0.1920.1040" timestamp="1629901512181" />
+    <state x="583" y="225" width="786" height="590" key="find.popup" timestamp="1629611382338">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="583" y="225" width="786" height="590" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1629611382338" />
+    <state x="616" y="242" key="run.anything.popup" timestamp="1629898512511">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="242" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1629898512511" />
+  </component>
+</project>

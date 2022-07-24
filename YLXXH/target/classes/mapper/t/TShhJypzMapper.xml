@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhixiang.health.modules.t.mapper.TShhJypzMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zhixiang.health.modules.t.model.entity.TShhJypz">
+        <id column="id" property="id" />
+
+        <result column="yongyoudanwei" property="yongyoudanwei" />
+        <result column="jiayousj" property="jiayousj" />
+        <result column="numberplate" property="numberplate" />
+        <result column="youpin" property="youpin" />
+        <result column="shuliang" property="shuliang" />
+        <result column="yue" property="yue" />
+        <result column="jingbanren" property="jingbanren" />
+        <result column="shangciyibiaoshu" property="shangciyibiaoshu" />
+        <result column="benciyibiaoshu" property="benciyibiaoshu" />
+
+        <result column="create_date" property="createDate" />
+        <result column="update_date" property="updateDate" />
+        <result column="create_by" property="createBy" />
+        <result column="update_by" property="updateBy" />
+        <result column="delete_state" property="deleteState" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <select id="pageList" resultType="com.zhixiang.health.modules.t.model.dto.TShhJypzDto">
+        SELECT t.*
+        FROM t_shh_jypz t
+        WHERE t.delete_state = 0
+        <if test="youpin != '' and youpin != null"> AND instr(t.youpin,#{youpin}) > 0  </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        <if test="jiayousj != '' and jiayousj != null"> AND instr(t.jiayousj,#{jiayousj}) > 0 </if>
+
+        order by t.create_date desc
+        limit #{limitStart}, #{pageSize}
+    </select>
+    <select id="getTotal" resultType="java.lang.Long">
+        SELECT count(1)
+        FROM t_shh_jypz t
+        WHERE t.delete_state = 0
+        <if test="youpin != '' and youpin != null"> AND instr(t.youpin,#{youpin}) > 0  </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        <if test="jiayousj != '' and jiayousj != null"> AND instr(t.jiayousj,#{jiayousj}) > 0 </if>
+    </select>
+    <select id="getLastCzpzBycarnum" resultType="com.zhixiang.health.modules.t.model.dto.TShhJypzDto">
+        select * from t_shh_jypz t
+        WHERE t.delete_state = 0 and id = (
+        select max(id) from t_shh_jypz t WHERE t.delete_state = 0
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        )
+    </select>
+    <select id="getCzpzList" resultType="com.zhixiang.health.modules.t.model.dto.TShhJypzDto">
+        select * from t_shh_jypz t where t.delete_state = 0 and (isdc = 'N' or isdc = '')
+        <if test="youpin != '' and youpin != null"> AND instr(t.youpin,#{youpin}) > 0  </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        <if test="jiayousj != '' and jiayousj != null"> AND instr(t.jiayousj,#{jiayousj}) > 0 </if>
+    </select>
+    <select id="getCzpzByCarnum" resultType="com.zhixiang.health.modules.t.model.entity.TShhJypz">
+        select * from t_shh_jypz t where t.delete_state = 0 and isrz = 'N' and isprint ='Y'
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+    </select>
+    <select id="getJypzById" resultType="com.zhixiang.health.modules.t.model.dto.TShhJypzDto">
+        select * from t_shh_jypz t where id =#{id} and t.delete_state = 0
+    </select>
+    <select id="getJypzByCarnumAndSj" resultType="com.zhixiang.health.modules.t.model.entity.TShhJypz">
+        select * from t_shh_jypz t where t.delete_state = 0 and isprint = 'Y'
+        <if test="youpin != '' and youpin != null"> AND instr(t.youpin,#{youpin}) > 0  </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        <if test="jiayousj != '' and jiayousj != null"> AND instr(t.jiayousj,#{jiayousj}) > 0 </if>
+    </select>
+    <select id="getExportDataList" resultType="com.zhixiang.health.modules.t.model.entity.TShhJypz">
+        select * from t_shh_jypz t where t.delete_state = 0
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        <if test="yongyoudanwei != '' and yongyoudanwei != null"> AND instr(t.yongyoudanwei,#{yongyoudanwei}) > 0 </if>
+        <if test="jiayousj != '' and jiayousj != null"> AND DATE_FORMAT(t.jiayousj,'%Y-%m-%d') =#{jiayousj} </if>
+    </select>
+
+    <update id="updateJypz">
+        update t_shh_jypz set isdc= 'Y'
+        where id in (
+        select id from (
+        select * from t_shh_jypz t where t.delete_state = 0
+        <if test="youpin != '' and youpin != null"> AND instr(t.youpin,#{youpin}) > 0  </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        <if test="jiayousj != '' and jiayousj != null"> AND instr(t.jiayousj,#{jiayousj}) > 0 </if>
+        ) a
+        )
+    </update>
+
+</mapper>

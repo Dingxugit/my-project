@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhixiang.health.modules.t.mapper.TShhDckpMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zhixiang.health.modules.t.model.entity.TShhDckp">
+        <id column="id" property="id" />
+
+        <result column="yingyoudanwei" property="yingyoudanwei" />
+        <result column="youpin" property="youpin" />
+        <result column="leixing" property="leixing" />
+        <result column="pinpai" property="pinpai" />
+        <result column="pailiang" property="pailiang" />
+        <result column="xinghao" property="xinghao" />
+        <result column="yuefen" property="yuefen" />
+        <result column="youhaobiaozhun" property="youhaobiaozhun" />
+        <result column="zhixingbiaozhun" property="zhixingbiaozhun" />
+        <result column="lichengchudu" property="lichengchudu" />
+        <result column="lichengweidu" property="lichengweidu" />
+        <result column="xingshilicheng" property="xingshilicheng" />
+        <result column="motuoxiaoshi" property="motuoxiaoshi" />
+        <result column="haoyouliang" property="haoyouliang" />
+        <result column="qianziname" property="qianziname" />
+
+        <result column="create_date" property="createDate" />
+        <result column="update_date" property="updateDate" />
+        <result column="create_by" property="createBy" />
+        <result column="update_by" property="updateBy" />
+        <result column="delete_state" property="deleteState" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <select id="getTotal" resultType="java.lang.Long">
+        SELECT count(1)
+        FROM t_shh_dckp t
+        WHERE t.delete_state = 0
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        <if test="youpin != '' and youpin != null"> AND instr(t.youpin,#{youpin}) > 0 </if>
+        <if test="yuefen != '' and yuefen != null"> AND instr(t.yuefen,#{yuefen}) > 0 </if>
+        <if test="year != '' and year != null"> AND instr(t.year,#{year}) > 0 </if>
+    </select>
+    <select id="pageList" resultType="com.zhixiang.health.modules.t.model.dto.TShhDckpDto">
+        SELECT t.*
+        FROM t_shh_dckp t
+        WHERE t.delete_state = 0
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        <if test="youpin != '' and youpin != null"> AND instr(t.youpin,#{youpin}) > 0 </if>
+        <if test="yuefen != '' and yuefen != null"> AND instr(t.yuefen,#{yuefen}) > 0 </if>
+        <if test="year != '' and year != null"> AND instr(t.year,#{year}) > 0 </if>
+        order by t.create_date desc
+        limit #{limitStart}, #{pageSize}
+    </select>
+    <select id="getLastGlsBycarnum" resultType="com.zhixiang.health.modules.t.model.dto.TShhDckpDto">
+        SELECT t.*,c.brandmodel as cpxx
+        FROM t_car c left join
+        (select * from t_shh_dckp where
+        yuefen =
+        (select max(yuefen) from t_shh_dckp t WHERE t.delete_state = 0 and year = #{year}
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        )) t on t.numberplate = c.numberplate
+        WHERE c.delete_state =0
+        <if test="numberplate != '' and numberplate != null"> AND instr(c.numberplate,#{numberplate}) > 0 </if>
+    </select>
+    <select id="getDcyhList" resultType="com.zhixiang.health.modules.t.model.dto.TShhDckpDto">
+        SELECT t.*
+        FROM t_shh_dckp t
+        WHERE t.delete_state = 0 and (isdc = 'N' or isdc = '')
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        <if test="youpin != '' and youpin != null"> AND instr(t.youpin,#{youpin}) > 0 </if>
+        <if test="yuefen != '' and yuefen != null"> AND instr(t.yuefen,#{yuefen}) > 0 </if>
+        <if test="year != '' and year != null"> AND instr(t.year,#{year}) > 0 </if>
+    </select>
+    <select id="getDcyhxxBycarnum" resultType="com.zhixiang.health.modules.t.model.entity.TShhDckp">
+        SELECT t.*
+        FROM t_shh_dckp t
+        WHERE t.delete_state = 0
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        <if test="year != '' and year != null"> AND instr(t.year,#{year}) > 0 </if>
+        limit 1
+    </select>
+    <select id="getDcyhxxList" resultType="com.zhixiang.health.modules.t.model.entity.TShhDckp">
+        SELECT t.*
+        FROM t_shh_dckp t
+        WHERE t.delete_state = 0
+        <if test="yingyoudanwei != '' and yingyoudanwei != null"> AND instr(t.yingyoudanwei,#{yingyoudanwei}) > 0 </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        <if test="year != '' and year != null"> AND instr(t.year,#{year}) > 0 </if>
+        order by yuefen desc
+    </select>
+    <select id="pageEjdwYhfx" resultType="com.zhixiang.health.modules.t.model.dto.TShhDckpDto">
+        select
+        yingyoudanwei,leixing,numberplate,xinghao,pailiang,youpin,
+--         youhaobiaozhun,
+        sum(haoyouliang) haoyouliang,
+        sum(xingshilicheng) xingshilicheng,
+        sum(haoyouliang)/sum(xingshilicheng) * 100 youhaobiaozhun,
+        sum(zhixingbiaozhun)/#{monthSpace} as zhixingbiaozhun,remark
+        FROM t_shh_dckp t
+        WHERE t.delete_state = 0
+        <if test="yingyoudanwei != '' and yingyoudanwei != null"> AND instr(t.yingyoudanwei,#{yingyoudanwei}) > 0 </if>
+        <if test="leixing != '' and leixing != null"> AND instr(t.leixing,#{leixing}) > 0 </if>
+        <if test="pailiang != '' and pailiang != null"> AND instr(t.pailiang,#{pailiang}) > 0 </if>
+        <if test="youpin != '' and youpin != null"> AND instr(t.youpin,#{youpin}) > 0 </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        <if test="startDate != '' and startDate != null"> AND concat(concat(year,'-'),yuefen) >= #{startDate}</if>
+        <if test="endDate != '' and endDate != null"> <![CDATA[AND concat(concat(year,'-'),yuefen) <= #{endDate}]]></if>
+        group by yingyoudanwei,leixing,numberplate,xinghao,pailiang,youpin
+    </select>
+    <select id="getYhfxTotal" resultType="java.lang.Long">
+        select count(1)
+        from(
+        select IFNULL(count(1),0)
+        FROM t_shh_dckp t
+        WHERE t.delete_state = 0
+        <if test="numberplate != '' and numberplate != null">AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        <if test="startDate != '' and startDate != null">AND concat(concat(year,'-'),yuefen) >= #{startDate}</if>
+        <if test="endDate != '' and endDate != null"> <![CDATA[AND concat(concat(year,'-'),yuefen) <= #{endDate}]]></if>
+        group by year,yuefen,yingyoudanwei,leixing,numberplate,xinghao,pailiang,youpin,youhaobiaozhun
+        ) t
+    </select>
+    <select id="getDcyhxx" resultType="com.zhixiang.health.modules.t.model.entity.TShhDckp">
+        SELECT t.yingyoudanwei,t.numberplate,t.youpin,t.leixing,t.pinpai,t.pailiang,t.xinghao
+        FROM t_shh_dckp t
+        WHERE t.delete_state = 0
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        <if test="year != '' and year != null"> AND instr(t.year,#{year}) > 0 </if>
+        group by t.yingyoudanwei,t.numberplate,t.youpin,t.leixing,t.pinpai,t.pailiang,t.xinghao
+        limit 1
+    </select>
+
+    <update id="updateDcyh">
+        update t_shh_dckp set isdc = 'Y'
+        where id in (
+        select id from (
+        SELECT t.*
+        FROM t_shh_dckp t
+        WHERE t.delete_state = 0
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        <if test="youpin != '' and youpin != null"> AND instr(t.youpin,#{youpin}) > 0 </if>
+        <if test="yuefen != '' and yuefen != null"> AND instr(t.yuefen,#{yuefen}) > 0 </if>
+        <if test="year != '' and year != null"> AND instr(t.year,#{year}) > 0 </if>
+        ) a
+        )
+    </update>
+</mapper>

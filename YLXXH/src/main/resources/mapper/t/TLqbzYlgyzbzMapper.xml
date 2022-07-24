@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhixiang.health.modules.t.mapper.TLqbzYlgyzbzMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zhixiang.health.modules.t.model.entity.TLqbzYlgyzbz">
+        <id column="id" property="id" />
+
+        <result column="year" property="year" />
+        <result column="type" property="type" />
+        <result column="numberplate" property="numberplate" />
+        <result column="niandufenpei" property="niandufenpei" />
+        <result column="zengbo" property="zengbo" />
+        <result column="zhuangong" property="zhuangong" />
+        <result column="zhichuleixing92" property="zhichuleixing92" />
+        <result column="zhichuleixing95" property="zhichuleixing95" />
+        <result column="zhichuleixing35" property="zhichuleixing35" />
+        <result column="bianzhidanwei" property="bianzhidanwei" />
+        <result column="unitinformation" property="unitinformation" />
+
+        <result column="remark" property="remark" />
+        <result column="create_date" property="createDate" />
+        <result column="update_date" property="updateDate" />
+        <result column="create_by" property="createBy" />
+        <result column="update_by" property="updateBy" />
+        <result column="delete_state" property="deleteState" />
+    </resultMap>
+    <select id="pageList" resultType="com.zhixiang.health.modules.t.model.dto.TLqbzYlgyzbzDto">
+
+        SELECT t.*
+        FROM t_lqbz_ylgyzbz t
+        WHERE t.delete_state = 0
+        <if test="year != '' and year != null"> AND instr(t.year,#{year}) > 0  </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        order by t.type asc,t.create_date desc
+        limit #{limitStart}, #{pageSize}
+
+    </select>
+    <select id="pageTotal" resultType="java.lang.Long">
+        SELECT count(1)
+        FROM t_lqbz_ylgyzbz t
+        WHERE t.delete_state = 0
+        <if test="year != '' and year != null"> AND instr(t.year,#{year}) > 0  </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+    </select>
+    <select id="getDeptZbzBycarnum" resultType="com.zhixiang.health.modules.t.model.entity.TLqbzYlgyzbz">
+        SELECT t.*
+        FROM t_lqbz_ylgyzbz t
+        WHERE t.delete_state = 0 and type =1
+        <if test="year != '' and year != null"> AND instr(t.year,#{year}) > 0  </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+    </select>
+    <select id="getCarZbzBycarnum" resultType="com.zhixiang.health.modules.t.model.entity.TLqbzYlgyzbz">
+        SELECT t.*
+        FROM t_lqbz_ylgyzbz t
+        WHERE t.delete_state = 0 and type =2
+        <if test="year != '' and year != null"> AND instr(t.year,#{year}) > 0  </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+    </select>
+    <select id="getDeptZbz" resultType="com.zhixiang.health.modules.t.model.dto.TLqbzYlgyzbzDto">
+        SELECT t.year,t.numberplate,t.niandufenpei,
+        t.zengbo,t.zhuangong,t.unitinformation,sum(zhichuleixing92+zhichuleixing95+zhichuleixing35) as chongkazc
+        FROM t_lqbz_ylgyzbz t
+        WHERE t.delete_state = 0 and type =1
+        <if test="year != '' and year != null"> AND instr(t.year,#{year}) > 0  </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+         group by t.year,t.numberplate,t.niandufenpei,t.zengbo,t.zhuangong,t.unitinformation
+    </select>
+    <select id="pageEjdw" resultType="com.zhixiang.health.modules.t.model.dto.TLqbzYlgyzbzDto">
+        select * from (
+        SELECT t.id,t.year,t.numberplate,t.niandufenpei,t.zengbo,t.zhuangong,t.chongkazc,t.unitinformation,t.remark
+        FROM t_lqbz_ylgyzbz t
+        WHERE t.delete_state = 0
+        <if test="year != '' and year != null">AND instr(t.year,#{year}) > 0</if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+
+        union
+        select
+        999999999 as id,#{year} as year,'合计' as numberplate,
+        sum(niandufenpei) niandufenpei,sum(zengbo) zengbo,sum(zhuangong) zhuangong,sum(chongkazc)
+        chongkazc,sum(unitinformation) unitinformation,'' remark
+        from t_lqbz_ylgyzbz WHERE delete_state = 0
+        <if test="year != '' and year != null"> AND instr(year,#{year}) > 0  </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(numberplate,#{numberplate}) > 0 </if>
+         ) a
+        order by id
+    </select>
+    <select id="pageEjdwYdbb" resultType="com.zhixiang.health.modules.t.model.dto.TLqbzYlgyzbzDto">
+
+        select * from (
+        SELECT t.id,t.year,t.numberplate,t.niandufenpei,t.zengbo,t.zhuangong,t.chongkazc,t.unitinformation,t.remark
+        FROM t_lqbz_ylgyzbz t
+        WHERE t.delete_state = 0
+        <if test="startDate != '' and startDate != null"> AND date_format(create_date, '%Y-%m-%d %H:%m:%s') >=#{startDate}  </if>
+        <if test="endDate != '' and endDate != null">
+            <![CDATA[
+             AND date_format(create_date, '%Y-%m-%d %H:%m:%s') <=#{endDate}
+          ]]>
+        </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+
+        union
+        select
+        999999999 as id,#{year} as year,'合计' as numberplate,
+        sum(niandufenpei) niandufenpei,sum(zengbo) zengbo,sum(zhuangong) zhuangong,sum(chongkazc)
+        chongkazc,sum(unitinformation) unitinformation,'' remark
+        from t_lqbz_ylgyzbz WHERE delete_state = 0
+        <if test="startDate != '' and startDate != null"> AND date_format(create_date, '%Y-%m-%d %H:%m:%s') >=#{startDate}  </if>
+        <if test="endDate != '' and endDate != null">
+            <![CDATA[
+             AND date_format(create_date, '%Y-%m-%d %H:%m:%s') <=#{endDate}
+          ]]>
+        </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        ) a
+        order by id
+
+    </select>
+    <select id="getTotal" resultType="java.lang.Long">
+        SELECT count(1)
+        FROM t_lqbz_ylgyzbz t
+        WHERE t.delete_state = 0
+        <if test="startDate != '' and startDate != null"> AND date_format(create_date, '%Y-%m-%d %H:%m:%s') >=#{startDate}  </if>
+        <if test="endDate != '' and endDate != null">
+            <![CDATA[
+             AND date_format(create_date, '%Y-%m-%d %H:%m:%s') <=#{endDate}
+          ]]>
+        </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+    </select>
+    <select id="searchExists" resultType="com.zhixiang.health.modules.t.model.dto.TLqbzYlgyzbzDto">
+        select * from t_lqbz_ylgyzbz where delete_state = 0
+        <if test="numberplate != '' and numberplate != null"> AND instr(numberplate,#{numberplate}) > 0 </if>
+        <if test="year != '' and year != null"> AND instr(year,#{year}) > 0 </if>
+        <if test="type != '' and type != null"> AND instr(type,#{type}) > 0 </if>
+    </select>
+    <select id="getExportDataList" resultType="com.zhixiang.health.modules.t.model.entity.TLqbzYlgyzbz">
+        select * from t_lqbz_ylgyzbz  WHERE delete_state = 0
+        <if test="year != '' and year != null"> AND instr(year,#{year}) > 0 </if>
+        <if test="bianzhidanwei != '' and bianzhidanwei != null"> AND instr(bianzhidanwei,#{bianzhidanwei}) > 0 </if>
+        <if test="type != '' and type != null"> AND type =#{type}  </if>
+         order by type
+    </select>
+
+</mapper>

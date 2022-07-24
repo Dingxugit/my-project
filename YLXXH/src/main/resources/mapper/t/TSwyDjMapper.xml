@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhixiang.health.modules.t.mapper.TSwyDjMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zhixiang.health.modules.t.model.entity.TSwyDj">
+        <id column="id" property="id" />
+
+        <result column="yongyoudanwei" property="yongyoudanwei" />
+        <result column="pingzhenghao" property="pingzhenghao" />
+        <result column="riqi" property="riqi" />
+        <result column="zhuangbeihao" property="zhuangbeihao" />
+        <result column="fadongjihao" property="fadongjihao" />
+        <result column="chejiahao" property="chejiahao" />
+        <result column="youpin" property="youpin" />
+        <result column="youliaozhibiaojeicun" property="youliaozhibiaojeicun" />
+        <result column="sijiname" property="sijiname" />
+        <result column="midu" property="midu" />
+        <result column="jiayouyuanname" property="jiayouyuanname" />
+
+        <result column="create_date" property="createDate" />
+        <result column="update_date" property="updateDate" />
+        <result column="create_by" property="createBy" />
+        <result column="update_by" property="updateBy" />
+        <result column="delete_state" property="deleteState" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <select id="pageList" resultType="com.zhixiang.health.modules.t.model.dto.TSwyDjDto">
+        SELECT t.*
+        FROM t_swy_dj t
+        WHERE t.delete_state = 0
+        <if test="riqi != '' and riqi != null"> AND instr(t.riqi,#{riqi}) > 0  </if>
+        <if test="pingzhenghao != '' and pingzhenghao != null"> AND instr(t.pingzhenghao,#{pingzhenghao}) > 0 </if>
+        <if test="yongyoudanwei != '' and yongyoudanwei != null"> AND instr(t.yongyoudanwei,#{yongyoudanwei}) > 0 </if>
+        order by t.create_date desc
+        limit #{limitStart}, #{pageSize}
+    </select>
+    <select id="getTotal" resultType="java.lang.Long">
+        SELECT count(1)
+        FROM t_swy_dj t
+        WHERE t.delete_state = 0
+        <if test="riqi != '' and riqi != null"> AND instr(t.riqi,#{riqi}) > 0  </if>
+        <if test="pingzhenghao != '' and pingzhenghao != null"> AND instr(t.pingzhenghao,#{pingzhenghao}) > 0 </if>
+        <if test="yongyoudanwei != '' and yongyoudanwei != null"> AND instr(t.yongyoudanwei,#{yongyoudanwei}) > 0 </if>
+
+    </select>
+    <select id="getDjList" resultType="com.zhixiang.health.modules.t.model.dto.TSwyDjDto">
+        SELECT t.*
+        FROM t_swy_dj t
+        WHERE t.delete_state = 0 and (isdc = 'N' or isdc = '')
+        <if test="riqi != '' and riqi != null"> AND instr(t.riqi,#{riqi}) > 0  </if>
+        <if test="pingzhenghao != '' and pingzhenghao != null"> AND instr(t.pingzhenghao,#{pingzhenghao}) > 0 </if>
+        order by t.create_date desc
+    </select>
+    <select id="getExportDataList" resultType="com.zhixiang.health.modules.t.model.entity.TSwyDj">
+        SELECT t.*
+        FROM t_swy_dj t
+        WHERE t.delete_state = 0
+        <if test="yongyoudanwei != '' and yongyoudanwei != null"> AND instr(t.yongyoudanwei,#{yongyoudanwei}) > 0  </if>
+        <if test="pingzhenghao != '' and pingzhenghao != null"> AND instr(t.pingzhenghao,#{pingzhenghao}) > 0 </if>
+    </select>
+
+    <update id="updateDj">
+        update t_swy_dj set isdc = 'Y'
+        where id in (
+        select id from (
+        SELECT t.*
+        FROM t_swy_dj t
+        WHERE t.delete_state = 0
+        <if test="riqi != '' and riqi != null"> AND instr(t.riqi,#{riqi}) > 0  </if>
+        <if test="pingzhenghao != '' and pingzhenghao != null"> AND instr(t.pingzhenghao,#{pingzhenghao}) > 0 </if>
+        order by t.create_date desc
+        ) a
+        )
+    </update>
+
+</mapper>

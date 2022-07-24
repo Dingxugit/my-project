@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhixiang.health.modules.log.mapper.LogHandleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zhixiang.health.modules.log.model.entity.LogHandle">
+        <id column="id" property="id" />
+
+        <result column="year" property="year" />
+        <result column="day" property="day" />
+        <result column="user_name" property="userName" />
+        <result column="detail" property="detail" />
+        <result column="method" property="method" />
+        <result column="url" property="url" />
+        <result column="http_type" property="httpType" />
+        <result column="args" property="args" />
+        <result column="event_type" property="eventType" />
+        <result column="module_type" property="moduleType" />
+
+        <result column="create_date" property="createDate" />
+        <result column="create_by" property="createBy" />
+        <result column="update_date" property="updateDate" />
+        <result column="update_by" property="updateBy" />
+        <result column="remark" property="remark" />
+        <result column="delete_state" property="deleteState" />
+    </resultMap>
+
+    <insert id="insert">
+        INSERT INTO ${tableName} SET
+        year = #{log.year},
+        day = #{log.day},
+        user_name = #{log.userName},
+        detail = #{log.detail},
+        method = #{log.method},
+        url = #{log.url},
+        http_type = #{log.httpType},
+        args = #{log.args},
+        event_type = #{log.eventType},
+        module_type = #{log.moduleType},
+        create_date = now(),
+        create_by = #{log.userName}
+    </insert>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        select *
+        from ${tableName}
+        where 1=1
+        <if test="param.year != null"> and year = #{param.year} </if>
+        <if test="param.userName != '' and param.userName != null"> AND user_name like '%${param.userName}%' </if>
+        ORDER BY create_date desc
+        limit #{param.limitStart}, #{param.pageSize}
+    </select>
+
+    <select id="pageTotal" resultType="java.lang.Long">
+        select count(1)
+        from ${tableName}
+        where 1=1
+        <if test="param.year != null"> and year = #{param.year} </if>
+        <if test="param.userName != '' and param.userName != null"> AND user_name like '%${param.userName}%' </if>
+    </select>
+
+</mapper>

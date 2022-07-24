@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhixiang.health.modules.sys.mapper.SysSystemMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zhixiang.health.modules.sys.model.entity.SysSystem">
+        <id column="id" property="id" />
+
+        <result column="type" property="type" />
+        <result column="name" property="name" />
+        <result column="describe" property="describe" />
+        <result column="icon" property="icon" />
+        <result column="is_guide" property="isGuide" />
+        <result column="show_type" property="showType" />
+        <result column="blank_path" property="blankPath" />
+        <result column="sort" property="sort" />
+
+        <result column="create_date" property="createDate" />
+        <result column="create_by" property="createBy" />
+        <result column="update_date" property="updateDate" />
+        <result column="update_by" property="updateBy" />
+        <result column="remark" property="remark" />
+        <result column="delete_state" property="deleteState" />
+    </resultMap>
+
+    <select id="listAll" resultType="com.zhixiang.health.modules.sys.model.dto.SysSystemDto">
+        SELECT
+            ss.id, ss.type, ss.name,ss.`describe`, ss.icon, ss.is_guide as isGuide, ss.blank_path as blankPath,
+            ss.show_type as showType, ss.sort, sd.label as typeName, sr.id as resourceId
+        FROM sys_system ss
+        left join sys_dict sd on ss.type = sd.`value` and sd.delete_state = 0
+        LEFT JOIN sys_resource sr on sr.resource_id = ss.id and sr.type = 1
+        WHERE ss.delete_state = 0
+        ORDER BY ss.type, ss.sort
+    </select>
+
+    <select id="listByUseId" resultType="com.zhixiang.health.modules.sys.model.dto.SysSystemDto">
+        SELECT
+            DISTINCT
+            ss.id, ss.name, ss.`describe`, ss.icon, ss.is_guide as isGuide, ss.blank_path as blankPath,
+            ss.show_type as showType, ss.sort, sd.label as typeName, sr.id as resourceId
+        FROM sys_system ss
+        LEFT JOIN sys_dict sd on ss.type = sd.`value` and sd.delete_state = 0
+        LEFT JOIN sys_resource sr on ss.id = sr.resource_id and sr.type = 1
+        LEFT JOIN sys_role_resource srr on sr.id = srr.resource_id
+        LEFT JOIN sys_user_role sur on srr.role_id = sur.role_id
+        LEFT JOIN sys_user su on sur.user_id = su.id
+        WHERE su.delete_state = 0 and ss.delete_state = 0 and su.id = #{userId}
+        order by  ss.sort
+    </select>
+
+</mapper>

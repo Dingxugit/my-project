@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhixiang.health.modules.t.mapper.TShhGldjbMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zhixiang.health.modules.t.model.entity.TShhGldjb">
+        <id column="id" property="id" />
+
+        <result column="lingkashiyou" property="lingkashiyou" />
+        <result column="lingqushijian" property="lingqushijian" />
+        <result column="jiayoukakahao" property="jiayoukakahao" />
+        <result column="numberplate" property="numberplate" />
+        <result column="changpaixinghao" property="changpaixinghao" />
+        <result column="youpin" property="youpin" />
+        <result column="shangcilichengdushu" property="shangcilichengdushu" />
+        <result column="bencilichengdushu" property="bencilichengdushu" />
+        <result column="xiingshilicheng" property="xiingshilicheng" />
+        <result column="bencijiayouliang" property="bencijiayouliang" />
+        <result column="bencijiayoujine" property="bencijiayoujine" />
+        <result column="kaneiyue" property="kaneiyue" />
+        <result column="guihuanshijian" property="guihuanshijian" />
+        <result column="shifoushangjiaoxiaopiao" property="shifoushangjiaoxiaopiao" />
+        <result column="jiashiyanname" property="jiashiyanname" />
+        <result column="isrz" property="isrz" />
+        <result column="jiayoushijian" property="jiayoushijian" />
+
+        <result column="create_date" property="createDate" />
+        <result column="update_date" property="updateDate" />
+        <result column="create_by" property="createBy" />
+        <result column="update_by" property="updateBy" />
+        <result column="delete_state" property="deleteState" />
+        <result column="remark" property="remark" />
+    </resultMap>
+    <select id="pageList" resultType="com.zhixiang.health.modules.t.model.dto.TShhGldjbDto">
+        SELECT t.*
+        FROM t_shh_gldjb t
+        WHERE t.delete_state = 0
+        <if test="lingqushijian != '' and lingqushijian != null"> AND instr(t.lingqushijian,#{lingqushijian}) > 0 </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        <if test="jiayoukakahao != '' and jiayoukakahao != null"> AND instr(t.jiayoukakahao,#{jiayoukakahao}) > 0  </if>
+
+        order by t.create_date desc
+        limit #{limitStart}, #{pageSize}
+    </select>
+    <select id="getTotal" resultType="java.lang.Long">
+        SELECT count(1)
+        FROM t_shh_gldjb t
+        WHERE t.delete_state = 0
+        <if test="lingqushijian != '' and lingqushijian != null"> AND instr(t.lingqushijian,#{lingqushijian}) > 0 </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        <if test="jiayoukakahao != '' and jiayoukakahao != null"> AND instr(t.jiayoukakahao,#{jiayoukakahao}) > 0  </if>
+
+    </select>
+    <select id="getDjxx" resultType="com.zhixiang.health.modules.t.model.dto.TShhGldjbDto">
+        SELECT t.*
+        FROM t_shh_gldjb t
+        WHERE t.delete_state = 0
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        <if test="youpin != '' and youpin != null"> AND instr(t.youpin,#{youpin}) > 0 </if>
+        <if test="jiayoushijian != '' and jiayoushijian != null"> AND instr(t.jiayoushijian,#{jiayoushijian}) > 0 </if>
+    </select>
+    <select id="getExportDataList" resultType="com.zhixiang.health.modules.t.model.entity.TShhGldjb">
+        SELECT t.*
+        FROM t_shh_gldjb t
+        WHERE t.delete_state = 0
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+    </select>
+
+</mapper>

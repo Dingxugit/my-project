@@ -1,0 +1,61 @@
+spring:
+  application:
+    name: ZXHealth
+  profiles:
+    active: dev
+  cache:
+    cache-names: ZXHealth-Cache
+    type: redis
+    redis:
+      time-to-live: 86400000 #1天
+  redis:
+    host: ${ylxxh.redis.host}
+    port: ${ylxxh.redis.port}
+    database: ${ylxxh.redis.database}
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: ${ylxxh.datasource.url}
+    username: ${ylxxh.datasource.username}
+    password: ${ylxxh.datasource.password}
+    hikari:
+      connection-timeout: 30000
+      maximum-pool-size: 10
+      connection-test-query: SELECT 1
+  resources:
+    static-locations: file:${ylxxh.common.static-file-path},classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+  servlet:
+    multipart:
+      max-file-size: 10MB
+
+server:
+  port: ${ylxxh.post}
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*/*.xml
+  type-aliases-package: com.zhixiang.health.modules.*.model.entity
+  type-enums-package: com.zhixiang.health.common.model.enums; com.zhixiang.health.modules.*.model.enums
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      id-type: AUTO
+    banner: false
+
+logging:
+  config: classpath:logback.xml
+  level:
+    root: INFO
+    org.springframework: WARN
+    com.zhixiang: debug
+
+security:
+  oauth2:
+    access_token_timeout: 43200 # access_token过期时间(秒) 默认43200秒 = 12小时
+    refresh_token_timeout: 2592000 # refresh_token过期时间(秒) 默认2592000秒 = 30天
+    urls:
+      permits:
+      - /oauth/**
+      - /assets/**
+      - /sys/resource/routeList
+      - /pic/**

@@ -1,0 +1,92 @@
+package ${package.Controller};
+
+import $!{package.Entity}.${table.entityName};
+import $!{package.Service}.${table.serviceName};
+import org.springframework.web.bind.annotation.*;
+
+#if(${superControllerClassPackage})
+import ${superControllerClassPackage};
+#end
+
+import javax.annotation.Resource;
+
+/**
+ * <p>
+ * $!{table.comment} 前端控制器
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+#if(${restControllerStyle})
+@RestController
+#else
+@Controller
+#end
+@RequestMapping("${cfg.apiPath}")
+#if(${kotlin})
+class ${table.controllerName}#if(${superControllerClass}) : ${superControllerClass}()#end
+
+#else
+#if(${superControllerClass})
+public class ${table.controllerName} extends ${superControllerClass} {
+#else
+public class ${table.controllerName} {
+#end
+
+    @Resource
+    private ${table.serviceName} service;
+
+    /**
+     * 分页查询信息
+     * @param page page
+     * @param entity 实体信息
+     * @return page
+     */
+    @GetMapping(value = "/page")
+    public HttpPageResult<${table.entityName}> page(Page<${table.entityName}> page, ${table.entityName} entity) {
+        return new HttpPageResult<>(service.page(page));
+    }
+
+    /**
+     * 保存实体信息
+     * @param entity 实体信息
+     * @return Boolean
+     */
+    @PostMapping(value = "/save")
+    public HttpResult<Boolean> save( @RequestBody ${table.entityName} entity ){
+        return new HttpResult<>(service.save(entity));
+    }
+
+    /**
+     * 修改实体信息
+     * @param entity 实体信息
+     * @return Boolean
+     */
+    @PutMapping(value = "/update")
+    public HttpResult<Boolean> updateById( @RequestBody ${table.entityName} entity ){
+        return new HttpResult<>(service.updateById(entity));
+    }
+
+    /**
+    * 删除实体信息
+    * @param id 实体ID
+    * @return Boolean
+    */
+    @DeleteMapping(value = "/remove/{id}")
+    public HttpResult<Boolean> removeById( @PathVariable Integer id ){
+        return new HttpResult<>(service.removeById(id));
+    }
+
+    /**
+    * 查找实体信息
+    * @param id 实体ID
+    * @return HttpResult
+    */
+    @GetMapping(value = "/get/{id}")
+    public HttpResult<${table.entityName}> getById(@PathVariable Integer id ){
+        return new HttpResult<>(service.getById(id));
+    }
+}
+
+#end

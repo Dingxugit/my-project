@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhixiang.health.modules.sys.mapper.SysDeptMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zhixiang.health.modules.sys.model.entity.SysDept">
+        <id column="id" property="id" />
+
+        <result column="parent_id" property="parentId" />
+        <result column="name" property="name" />
+        <result column="simple_name" property="simpleName" />
+        <result column="code" property="code" />
+        <result column="sort" property="sort" />
+
+        <result column="create_date" property="createDate" />
+        <result column="create_by" property="createBy" />
+        <result column="update_date" property="updateDate" />
+        <result column="update_by" property="updateBy" />
+        <result column="remark" property="remark" />
+        <result column="delete_state" property="deleteState" />
+    </resultMap>
+
+    <select id="listTreeDto" resultType="com.zhixiang.health.modules.sys.model.dto.SysDeptTreeDto">
+        SELECT
+            id as id, parent_id as parentId, name as name, simple_name as simpleName,
+            code as code, sort as sort
+        FROM sys_dept
+        WHERE delete_state = 0
+        ORDER BY sort
+    </select>
+
+    <select id="checkCode" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM sys_dept
+        WHERE delete_state = 0
+        AND code = #{code}
+        <if test=" id != '' and id != null">
+            AND id != #{id}
+        </if>
+    </select>
+    <select id="getSysDept" resultType="com.zhixiang.health.modules.sys.model.dto.SysDeptTreeDto">
+        select id,name from sys_dept where delete_state = 0
+        <if test="id != '' and id != null" > and id = #{id}</if>
+    </select>
+    <select id="getSysDeptList" resultType="com.zhixiang.health.modules.sys.model.entity.SysDept">
+        select * from (
+        select 0 as id,'战区本级' as name ,0 as sort from dual
+        union
+        select id,name,sort from sys_dept where delete_state = 0
+        ) t order by t.sort
+    </select>
+
+</mapper>

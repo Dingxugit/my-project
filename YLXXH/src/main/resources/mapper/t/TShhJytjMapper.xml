@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhixiang.health.modules.t.mapper.TShhJytjMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zhixiang.health.modules.t.model.entity.TShhJytj">
+        <id column="id" property="id" />
+
+        <result column="jiayoukahao" property="jiayoukahao" />
+        <result column="numberplate" property="numberplate" />
+        <result column="changpaixinghao" property="changpaixinghao" />
+        <result column="fadongjihao" property="fadongjihao" />
+        <result column="chejiahaoma" property="chejiahaoma" />
+        <result column="shengyuzhibiao" property="shengyuzhibiao" />
+        <result column="bianzhidanwei" property="bianzhidanwei" />
+        <result column="tianbaoshijian" property="tianbaoshijian" />
+        <result column="querequanzu" property="querequanzu" />
+
+    </resultMap>
+
+    <select id="pageList" resultType="com.zhixiang.health.modules.t.model.dto.TShhJytjDto">
+        SELECT t.*
+        FROM t_shh_jytj t
+        WHERE t.delete_state = 0
+        <if test="jiayoukahao != '' and jiayoukahao != null"> AND instr(t.jiayoukahao,#{jiayoukahao}) > 0  </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+
+        order by t.create_date desc
+        limit #{limitStart}, #{pageSize}
+    </select>
+    <select id="getTotal" resultType="java.lang.Long">
+        SELECT count(1)
+        FROM t_shh_jytj t
+        WHERE t.delete_state = 0
+        <if test="jiayoukahao != '' and jiayoukahao != null"> AND instr(t.jiayoukahao,#{jiayoukahao}) > 0  </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+
+    </select>
+    <select id="getJykxxtjList" resultType="com.zhixiang.health.modules.t.model.dto.TShhJytjDto">
+        SELECT t.*
+        FROM t_shh_jytj t
+        WHERE t.delete_state = 0 and (isdc = 'N' or isdc = '')
+        <if test="jiayoukahao != '' and jiayoukahao != null"> AND instr(t.jiayoukahao,#{jiayoukahao}) > 0  </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+    </select>
+    <select id="getJykxxtjDcLists" resultType="com.zhixiang.health.modules.t.model.entity.TShhJytj">
+        select * from  t_shh_jytj t
+        WHERE t.delete_state = 0
+        and (isdctp = 'N' or isdctp = '')
+    </select>
+    <select id="getExportDataList" resultType="com.zhixiang.health.modules.t.model.entity.TShhJytj">
+         select * from  t_shh_jytj t
+        WHERE t.delete_state = 0
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        <if test="bianzhidanwei != '' and bianzhidanwei != null"> AND instr(t.bianzhidanwei,#{bianzhidanwei}) > 0 </if>
+        <if test="tianbaoshijian != '' and tianbaoshijian != null"> AND DATE_FORMAT(t.tianbaoshijian,'%Y-%m-%d') =#{tianbaoshijian} </if>
+    </select>
+
+    <update id="updateJytj">
+        update t_shh_jytj set isdc = 'Y'
+        where id in (
+        select id from (
+        SELECT t.*
+        FROM t_shh_jytj t
+        WHERE t.delete_state = 0
+        <if test="jiayoukahao != '' and jiayoukahao != null"> AND instr(t.jiayoukahao,#{jiayoukahao}) > 0  </if>
+        <if test="numberplate != '' and numberplate != null"> AND instr(t.numberplate,#{numberplate}) > 0 </if>
+        ) a
+        )
+    </update>
+
+</mapper>

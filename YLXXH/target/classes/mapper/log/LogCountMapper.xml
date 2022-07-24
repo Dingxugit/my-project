@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhixiang.health.modules.log.mapper.LogCountMapper">
+
+    <select id="login" resultType="com.zhixiang.health.modules.log.model.dto.LogCountLoginDto">
+        SELECT
+            (select count(1) from log_login) as total,
+            (select count(1) from log_login where to_days(create_date) = to_days(now()) )  as today,
+            (select count(1) from log_login where result = 1 )  as success,
+            (select count(1) from log_login where result = 0 )  as error
+        FROM DUAL
+    </select>
+
+    <select id="loginList" resultType="com.zhixiang.health.common.model.dto.ChartDto">
+        select name, count(1) as  value
+        from (
+            SELECT CONCAT(CONCAT(year, '-'), month) as name FROM log_login
+        )t
+        GROUP BY name
+        ORDER BY name
+    </select>
+
+    <select id="handleMonth" resultType="com.zhixiang.health.common.model.dto.ChartDto">
+        select '1月' as name, count(1) as value FROM log_handle_1 WHERE year = #{year}
+        union all
+        select '2月' as name, count(1) as value FROM log_handle_2 WHERE year = #{year}
+        union all
+        select '3月' as name, count(1) as value FROM log_handle_3 WHERE year = #{year}
+        union all
+        select '4月' as name, count(1) as value FROM log_handle_4 WHERE year = #{year}
+        union all
+        select '5月' as name, count(1) as value FROM log_handle_5 WHERE year = #{year}
+        union all
+        select '6月' as name, count(1) as value FROM log_handle_6 WHERE year = #{year}
+        union all
+        select '7月' as name, count(1) as value FROM log_handle_7 WHERE year = #{year}
+        union all
+        select '8月' as name, count(1) as value FROM log_handle_8 WHERE year = #{year}
+        union all
+        select '9月' as name, count(1) as value FROM log_handle_9 WHERE year = #{year}
+        union all
+        select '10月' as name, count(1) as value FROM log_handle_10 WHERE year = #{year}
+        union all
+        select '11月' as name, count(1) as value FROM log_handle_11 WHERE year = #{year}
+        union all
+        select '12月' as name, count(1) as value FROM log_handle_12 WHERE year = #{year}
+    </select>
+    
+    <select id="handleRank" resultType="com.zhixiang.health.common.model.dto.ChartDto">
+        select name, sum(value) as value
+        from(
+            select user_name as name, count(1) as value from log_handle_1 WHERE year = #{year} GROUP BY user_name
+            UNION ALL
+            select user_name as name, count(1) as value from log_handle_2 WHERE year = #{year} GROUP BY user_name
+            UNION ALL
+            select user_name as name, count(1) as value from log_handle_3 WHERE year = #{year} GROUP BY user_name
+            UNION ALL
+            select user_name as name, count(1) as value from log_handle_4 WHERE year = #{year} GROUP BY user_name
+            UNION ALL
+            select user_name as name, count(1) as value from log_handle_5 WHERE year = #{year} GROUP BY user_name
+            UNION ALL
+            select user_name as name, count(1) as value from log_handle_6 WHERE year = #{year} GROUP BY user_name
+            UNION ALL
+            select user_name as name, count(1) as value from log_handle_7 WHERE year = #{year} GROUP BY user_name
+            UNION ALL
+            select user_name as name, count(1) as value from log_handle_8 WHERE year = #{year} GROUP BY user_name
+            UNION ALL
+            select user_name as name, count(1) as value from log_handle_9 WHERE year = #{year} GROUP BY user_name
+            UNION ALL
+            select user_name as name, count(1) as value from log_handle_10 WHERE year = #{year} GROUP BY user_name
+            UNION ALL
+            select user_name as name, count(1) as value from log_handle_11 WHERE year = #{year} GROUP BY user_name
+            UNION ALL
+            select user_name as name, count(1) as value from log_handle_12 WHERE year = #{year} GROUP BY user_name
+        ) t
+        GROUP BY name
+        ORDER BY value desc
+        LIMIT 0, 5
+    </select>
+
+</mapper>
